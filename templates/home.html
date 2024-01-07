@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{% block title %}home page{% endblock %}
+{% load static %}
+{% block content %} 
+
+<div class="" style="background-color: rgb(244, 213, 171);">
+    <h2 class="text-center mb-4 pt-3">Choice Your Favorite Book By Category</h2>
+    <div class="d-flex flex-wrap justify-content-center mx-2">
+        {% for i in book_category %}  
+            <div class="form-check mb-4">
+                <a class="btn btn-success" href="{%url 'category_book' i.slug %}" class="text-decoration-none">{{i.category_name}}</a> 
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% if request.user.is_authenticated %}
+<div class="pt-4">
+    <h3 class="text-center fw-bolder"> You are verified user </h3>
+    <h3 class="text-center fw-bolder"> Now you can borrow Book </h3>
+</div>
+{% else %}
+<div class="pt-2">
+    <h2 class="text-center"> If you want to borrow book </h2>
+    <h2 class="text-center">You need to login first</h2>
+</div>
+{% endif %}
+<div class="h-50 d-flex flex-wrap px-3 pt-5">
+    {% for i in data %}
+    <div class="col-sm-4 mt-2 mb-4 h-50">
+        <div class="card mx-2">
+            <div style="background-color: rgb(145, 223, 197);" class="card-body rounded h-50">
+                <!-- {% if i.image and i.image.url %} -->
+                <img src="{{i.image.url}}" class="card-img-top rounded" alt="book">
+                <!-- {% else %}
+                <img src="{% static 'static/image.png' %}" class="card-img-top rounded" alt="bookImage">
+                {% endif %} -->
+                <div class="card-body">
+                    <h3 class="card-title"><a class="text-decoration-none text-danger"  href="{% url 'book_detail_page' i.id %}">{{i.name}}</a></h3>
+                    <h6>Price : {{i.price}} tk</h6> 
+                   <p class="card-text">Quantity : {{i.quantity}}</p>
+                   <p class="card-text">Category: {{i.categories}}</p>
+                   <p class="card-text">Description : {{i.description | truncatewords:6}}</p>
+                </div> 
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}
