@@ -71,6 +71,7 @@ def BorrowBook(request,id):
                 return redirect('profile_page')
             else:
                 messages.error(request, 'Insufficient balance to borrow this book')
+                return redirect('deposit_page')
     else:
             messages.success(request, 'This book out of stock')
             return redirect('home_page')
