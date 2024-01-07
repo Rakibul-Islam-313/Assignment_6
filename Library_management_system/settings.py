@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-# import dj_database_url
+import dj_database_url
 
 import environ
 env = environ.Env()
@@ -96,26 +96,26 @@ WSGI_APPLICATION = 'Library_management_system.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT"),
-    }
-}
-
-
-
 # DATABASES = {
-#     'default': dj_database_url.config(
-#         # Feel free to alter this value to suit your needs.
-#         default='postgres://mamar_bank_ftr4_user:WRHAp5gDVQcsLffZjqlBwvzMMbiyEt7x@dpg-cm9uoqmd3nmc73csr62g-a.oregon-postgres.render.com/mamar_bank_ftr4',
-
-#     )
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': env("DB_NAME"),
+#         'USER': env("DB_USER"),
+#         'PASSWORD': env("DB_PASSWORD"),
+#         'HOST': env("DB_HOST"),
+#         'PORT': env("DB_PORT"),
+#     }
 # }
+
+
+
+DATABASES = {
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://library_management_aocz_user:VOnDYt9KAbjvEpsnDSvZh8yawhWdtUzi@dpg-cmd84v6d3nmc73dhjahg-a.oregon-postgres.render.com/library_management_aocz',
+
+    )
+}
 
 
 # Password validation
